@@ -1,9 +1,10 @@
 FROM continuumio/anaconda3:latest
 
+COPY dockerfiles/requirements.txt /tmp/requirements.txt
+COPY data/ /app/
+
+RUN pip install -r /tmp/requirements.txt
 RUN conda install -y jupyter
-RUN pip install -U jupyter
-RUN pip install notebook
-RUN pip install pyspark
 RUN pip install pyspark[connect]
 
 RUN mkdir /notebooks
