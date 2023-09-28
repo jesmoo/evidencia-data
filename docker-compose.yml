@@ -1,0 +1,10 @@
+version: '3'
+services:
+  anaconda-container:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile
+    volumes:
+      - ./notebooks:/notebooks
+    ports:
+      - "8888:8888"
