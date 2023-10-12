@@ -1,9 +1,13 @@
-FROM continuumio/anaconda3:latest
+FROM continuumio/anaconda3:2023.09-0
 
-COPY dockerfiles/requirements.txt /tmp/requirements.txt
-COPY data/ /app/
+RUN apt-get update && apt-get install -y unzip
 
+COPY setup/requirements.txt /tmp/requirements.txt
+COPY data.zip /tmp/data.zip
+
+RUN unzip /tmp/data.zip -d /app/
 RUN pip install -r /tmp/requirements.txt
+
 RUN conda install -y jupyter
 RUN pip install pyspark[connect]
 

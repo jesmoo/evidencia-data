@@ -1,10 +1,72 @@
 version: '3'
+
 services:
-  anaconda-container:
+  anaconda:
+    container_name: anaconda
     build:
       context: .
-      dockerfile: dockerfiles/Dockerfile
+      dockerfile: setup/Dockerfile
     volumes:
       - ./notebooks:/notebooks
     ports:
       - "8888:8888"
+
+  metabase:
+    image: metabase/metabase:v0.47.3
+    container_name: metabase
+    hostname: metabase
+    volumes:
+      - mb:/metabase-data
+    ports:
+      - 3000:3000
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER_FILE: /run/secrets/db_user
+      MB_DB_PASS_FILE: /run/secrets/db_password
+      MB_DB_HOST: postgres
+      MB_ENCRYPTION_SECRET_KEY: /run/secrets/secret_key
+    networks:
+      - metanet1
+    depends_on:
+      - postgres
+    secrets:
+      - db_password
+      - db_user
+      - secret_key
+    restart: always
+
+  postgres:
+    image: postgres:14.9
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_DB: metabase
+      POSTGRES_USER_FILE: /run/secrets/db_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    volumes:
+      - ./setup/schema.sql:/docker-entrypoint-initdb.d/setup/schema.sql
+      - db:/var/lib/postgresql/data/
+    networks:
+      - metanet1
+    secrets:
+      - db_password
+      - db_user
+    restart: always
+
+networks:
+  metanet1:
+    driver: bridge
+
+volumes:
+  db:
+  mb:
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_user:
+    file: ./secrets/db_user.txt
+  secret_key:
+    file: ./secrets/secret_key.txt

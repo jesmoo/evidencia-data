@@ -194,6 +194,8 @@ tags
 .history
 
 dist
+# just for evidence
+data.zip
 
 ### BricksUI SSH Key ###
 .ssh/id_rsa

@@ -1,43 +1,61 @@
 # Evidencia 1
 
-Este repositorio esta hecho con la finalidad de entregar el primer avance de la evidencia 1
+Este repositorio está diseñado para entregar la tarea Evidencia 1.
 
-## Configuración del entorno
+## Configuración del Entorno
 
-1. docker y docker-compose: Asegurate tener instaldo docker junto con docker-compose, verificalo con el siguiente comando
+Asegúrate de que tu entorno esté configurado correctamente siguiendo estos pasos:
 
-```shell
-docker-compose --version
-```
+### Requisitos Previos
 
-## Inicio del proyecto
+- [Docker](https://www.docker.com/) y [Docker Compose](https://docs.docker.com/compose/) deben estar instalados. Puedes verificarlo ejecutando el siguiente comando:
 
-1. Clona el repositorio
+    ```shell
+    docker-compose --version
+    ```
 
-2. Ejecuta el siguiente comando, para poder construir de forma correcta la imagen
+### Configuración de Variables de Entorno
 
-```shell
-docker-compose build
-```
+1. Clona este repositorio.
 
-3. Ejecuta el siguiente comando, para poder levantar de forma correcta la imagen
+2. Modifica las variables de entorno necesarias en la carpeta llamada `secrets`. Asegúrate de ajustarlas según tus necesidades.
 
-```shell
-docker-compose up
-```
+3. Asegúrate de que los esquemas de la base de datos estén configurados de acuerdo a tus requisitos.
 
-4. En los logs, busca un log semejante a este y ponlo en tu navegador favorito
+4. Descarga la informacion de los datos, lo puedes encontrar en este link de [Drive](https://drive.google.com/file/d/1S2kR2rqhLueTfjspEHSPULb2CWEF9sqY/view?usp=sharing)
 
-```shell
-http://127.0.0.1:8888/?token=xyz
-```
+4. Copia la informacion de los datos en la raiz del proyecto en un archivo .zip llamado data, se deberia de ver asi
 
-## Uso
+    ```shell
+    data.zip
+    ```
 
-Siga los pasos a continuación para ejecutar el proyecto:
+## Inicio del Proyecto
 
-1. Asegúrese de haber configurado correctamente el entorno siguiendo las instrucciones mencionadas anteriormente.
+Para iniciar el proyecto, sigue estos pasos:
 
-2. Una vez iniciado, puedes acceder a la notebook en el siguiente puerto 8080
+1. Asegúrate de estar en el directorio del proyecto.
 
-- [http://localhost:8080](http://localhost:8080)
+2. Ejecuta el siguiente comando para construir la imagen de forma correcta:
+
+    ```shell
+    docker-compose up
+    ```
+
+3. Para acceder a Anaconda, busca en los registros (logs) una URL similar a esta:
+
+    ```shell
+    http://127.0.0.1:8888/?token=xyz
+    ```
+
+4. Para acceder a Metabase, puedes usar la siguiente URL. Asegúrate de iniciar sesión:
+
+    ```shell
+    http://127.0.0.1:3000/
+    ```
+
+5. Si eres nuevo en Metabase, puedes configurarlo en:
+
+    ```shell
+    http://127.0.0.1:3000/setup
+    ```
