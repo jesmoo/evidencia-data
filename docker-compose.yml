@@ -3,13 +3,28 @@ version: '3'
 services:
   anaconda:
     container_name: anaconda
+    environment:
+      - SPARK_MODE=master
     build:
       context: .
       dockerfile: setup/Dockerfile
     volumes:
       - ./notebooks:/notebooks
+    networks:
+      - metanet1
     ports:
       - "8888:8888"
+
+  spark-worker:
+    image: apache/spark-py:v3.4.0
+    networks:
+      - metanet1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_WORKER_MEMORY=4G
+      - SPARK_EXECUTOR_MEMORY=4G
+      - SPARK_WORKER_CORES=4
 
   metabase:
     image: metabase/metabase:v0.47.3

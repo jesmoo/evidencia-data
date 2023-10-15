@@ -1,4 +1,5 @@
-FROM continuumio/anaconda3:2023.09-0
+FROM apache/spark-py:v3.4.0
+USER root
 
 RUN apt-get update && apt-get install -y unzip
 
@@ -8,8 +9,11 @@ COPY data.zip /tmp/data.zip
 RUN unzip /tmp/data.zip -d /app/
 RUN pip install -r /tmp/requirements.txt
 
-RUN conda install -y jupyter
+RUN pip install pyspark
 RUN pip install pyspark[connect]
+
+RUN mkdir -p /spark/jars
+RUN curl -o /spark/jars/postgresql.jar https://jdbc.postgresql.org/download/postgresql-42.6.0.jar
 
 RUN mkdir /notebooks
 WORKDIR /notebooks
