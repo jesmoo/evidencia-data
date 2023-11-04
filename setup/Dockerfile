@@ -4,10 +4,15 @@ USER root
 RUN apt-get update && apt-get install -y unzip
 
 COPY setup/requirements.txt /tmp/requirements.txt
-COPY data.zip /tmp/data.zip
-
-RUN unzip /tmp/data.zip -d /app/
 RUN pip install -r /tmp/requirements.txt
+
+# Evidencia 1
+COPY datos/evidencia1/data.zip /tmp/data.zip
+RUN unzip /tmp/data.zip -d /app/
+
+# Evidencia 2
+COPY datos/evidencia2/archive.zip /tmp/archive.zip
+RUN unzip /tmp/archive.zip -d /app/
 
 RUN pip install pyspark
 RUN pip install pyspark[connect]

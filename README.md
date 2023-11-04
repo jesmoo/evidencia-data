@@ -1,6 +1,7 @@
-# Evidencia 1
+# Evidencias
 
-Este repositorio está diseñado para entregar la tarea Evidencia 1.
+Este repositorio está diseñado para entregar las evidencias de la materia de Ingenieria de datos.
+Puedes ver el README.MD, de la evidencia 2, en ~/evidencia2/
 
 ## Configuración del Entorno
 
@@ -24,11 +25,13 @@ Asegúrate de que tu entorno esté configurado correctamente siguiendo estos pas
 
 4. Descarga la informacion de los datos, lo puedes encontrar en este link de [Drive](https://drive.google.com/file/d/1S2kR2rqhLueTfjspEHSPULb2CWEF9sqY/view?usp=sharing)
 
-4. Copia la informacion de los datos en la raiz del proyecto en un archivo .zip llamado data, se deberia de ver asi
+4. Copia la informacion de los datos en la carpeta llamada /datos/evidencia1 en un archivo .zip llamado data, se deberia de ver asi
 
-    ```shell
-    data.zip
-    ```
+```plaintext
+datos/
+|-evidencia/
+| |--data.zip
+```
 
 ## Inicio del Proyecto
 
