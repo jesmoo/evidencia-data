@@ -10,9 +10,13 @@ RUN pip install -r /tmp/requirements.txt
 COPY datos/evidencia1/data.zip /tmp/data.zip
 RUN unzip /tmp/data.zip -d /app/
 
-# Evidencia 2
+# Evidencia 2 - avance 1
 COPY datos/evidencia2/archive.zip /tmp/archive.zip
 RUN unzip /tmp/archive.zip -d /app/
+
+# Evidencia 2 - avance 2
+COPY datos/evidencia2/onlineShoppingDataset.zip /tmp/onlineShoppingDataset.zip
+RUN unzip /tmp/onlineShoppingDataset.zip -d /app/
 
 RUN pip install pyspark
 RUN pip install pyspark[connect]
